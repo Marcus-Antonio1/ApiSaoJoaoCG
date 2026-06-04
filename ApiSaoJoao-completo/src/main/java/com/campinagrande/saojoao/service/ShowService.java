@@ -50,14 +50,6 @@ public class ShowService {
     }
 
     @Transactional(readOnly = true)
-    public List<ShowResponseDTO> buscarPorMes(int mes, int ano) {
-        return showRepository.findByMesEAno(mes, ano)
-                .stream()
-                .map(this::toDTO)
-                .toList();
-    }
-
-    @Transactional(readOnly = true)
     public List<ShowResponseDTO> buscarPorNomeArtista(String nome) {
         return showRepository.findByNomeArtista(nome)
                 .stream()
