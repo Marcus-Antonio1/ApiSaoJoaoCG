@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>São João de Campina Grande — O Maior São João do Mundo</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="particles" class="particles-container" aria-hidden="true"></div>
+
+  <nav id="navbar" class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo" onclick="showPage('home'); return false;">
+        <span class="logo-fire">🔥</span>
+        <div>
+          <div class="logo-title">São João CG</div>
+          <div class="logo-sub">CAMPINA GRANDE</div>
+        </div>
+      </a>
+      
+      <div class="nav-search-box">
+        <input type="text" id="nav-search-input" placeholder="Buscar artista..." onkeydown="if(event.key==='Enter') triggerSearch()" />
+        <button onclick="triggerSearch()">🔍</button>
+      </div>
+
+      <div class="nav-links">
+        <button class="nav-link active" data-page="home" onclick="showPage('home')">Início</button>
+        <button class="nav-link" data-page="prog" onclick="showPage('prog')">Programação</button>
+        <button class="nav-link" data-page="busca" onclick="showPage('busca')">Buscar Artista</button>
+      </div>
+      
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir Menu">☰</button>
+    </div>
+  </nav>
+
+  <div id="mobile-menu" class="mobile-menu">
+    <button class="menu-close" onclick="toggleMenu()">✕</button>
+    <button class="mobile-nav-item" onclick="showPage('home'); toggleMenu()">Início</button>
+    <button class="mobile-nav-item" onclick="showPage('prog'); toggleMenu()">Programação</button>
+    <button class="mobile-nav-item" onclick="showPage('busca'); toggleMenu()">Buscar Artista</button>
+  </div>
+
+  <div id="page-home" class="page active">
+    <header class="hero">
+      <div id="bandeirolas-top" class="bandeirolas-container"></div>
+      <div class="container hero-inner">
+        <h1 class="hero-title">O Maior São João<br>do Mundo</h1>
+        <p class="hero-subtitle">Cultura, xote, forró e tradição no coração da Paraíba</p>
+        
+        <div class="countdown-wrapper">
+          <p class="countdown-label">Faltam para as próximas festividades:</p>
+          <div class="countdown-grid">
+            <div class="countdown-box"><span id="cd-dias">00</span><label>Dias</label></div>
+            <div class="countdown-box"><span id="cd-horas">00</span><label>Horas</label></div>
+            <div class="countdown-box"><span id="cd-min">00</span><label>Minutos</label></div>
+            <div class="countdown-box"><span id="cd-seg">00</span><label>Segundos</label></div>
+          </div>
+        </div>
+
+        <div class="hero-search-wrapper">
+          <input type="text" id="hero-search" placeholder="Quem você quer assistir no Parque do Povo?" onkeydown="if(event.key==='Enter') triggerSearch()" />
+          <button class="btn btn-search" onclick="triggerSearch()">Buscar Artista</button>
+        </div>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="scrollToPolos()">Conhecer os Polos</button>
+          <button class="btn btn-secondary" onclick="showPage('prog')">Ver Programação Completa</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="stats-bar">
+      <div class="container stats-inner">
+        <div class="stat-card"><span id="stat-shows">...</span><label>Apresentações</label></div>
+        <div class="stat-card"><span id="stat-polos">...</span><label>Polos Culturais</label></div>
+        <div class="stat-card"><span id="stat-artistas">...</span><label>Artistas Confirmados</label></div>
+      </div>
+    </section>
+
+    <main id="polos-section" class="container main-content">
+      <h2 class="section-title">Polos Oficiais</h2>
+      <p class="section-subtitle">Clique em um polo para acessar sua tela exclusiva de shows e atrações</p>
+      
+      <div id="polos-grid" class="polos-grid">
+        </div>
+      
+      <div id="bandeirolas-cta" class="bandeirolas-container" style="margin-top:4rem"></div>
+    </main>
+  </div>
+
+
+  <div id="page-polo" class="page">
+    <header id="polo-hero" class="polo-hero">
+      <div class="container">
+        <button class="btn-back" onclick="showPage('home')">← Voltar para o Início</button>
+        <div id="polo-hero-info" class="polo-hero-info">
+          </div>
+      </div>
+    </header>
+
+    <div class="container polo-container-body">
+      <p id="polo-desc-full" class="polo-desc-full"></p>
+
+      <div class="tabs-nav">
+        <button class="tab active" data-tab="shows" onclick="switchTab(this, 'shows')">🎵 Shows</button>
+        <button class="tab" data-tab="atracoes" onclick="switchTab(this, 'atracoes')">🎭 Atrações Culturais</button>
+        <button class="tab" data-tab="mapa" onclick="switchTab(this, 'mapa')">📍 Localização</button>
+      </div>
+
+      <div id="tab-shows" class="tab-panel active"></div>
+      <div id="tab-atracoes" class="tab-panel"></div>
+      <div id="tab-mapa" class="tab-panel">
+        <div id="mapa-info" class="mapa-info"></div>
+        <div id="leaflet-map" class="map-box"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="page-prog" class="page">
+    <div id="bandeirolas-prog" class="bandeirolas-container"></div>
+    <div class="container page-header-section">
+      <h1 class="section-title">Programação Oficial</h1>
+      <p class="section-subtitle">Chaveie as visualizações e consulte os palcos e horários</p>
+
+      <div class="prog-controls">
+        <div class="view-switchers">
+          <button id="vbtn-timeline" class="btn-view active" onclick="setView('timeline')">📋 Linha do Tempo</button>
+          <button id="vbtn-grade" class="btn-view" onclick="setView('grade')">🗓️ Grade Comparativa</button>
+        </div>
+        <button id="filter-toggle-btn" class="btn-filter-toggle" onclick="toggleFilters()">⚙️ Filtros Avançados</button>
+      </div>
+
+      <div id="filter-panel" class="filter-panel">
+        <div class="filter-grid">
+          <div class="filter-group">
+            <label for="f-polo">Polo Junino:</label>
+            <select id="f-polo" onchange="applyFilters()"></select>
+          </div>
+          <div class="filter-group">
+            <label for="f-data">Data do Evento:</label>
+            <select id="f-data" onchange="applyFilters()"></select>
+          </div>
+          <div class="filter-group">
+            <label for="f-genero">Gênero Musical:</label>
+            <select id="f-genero" onchange="applyFilters()"></select>
+          </div>
+        </div>
+        <div class="filter-footer">
+          <span id="prog-count" class="prog-count"></span>
+          <button id="clear-btn" class="btn-clear" onclick="clearFilters()" style="display: none;">Limpar Filtros ✕</button>
+        </div>
+      </div>
+
+      <div id="prog-stats" class="prog-stats-row"></div>
+    </div>
+
+    <div class="container text-left">
+      <div id="prog-timeline" class="timeline-container"></div>
+      <div id="prog-grade" class="grade-container" style="display: none;"></div>
+    </div>
+  </div>
+
+
+  <div id="page-busca" class="page">
+    <div id="bandeirolas-busca" class="bandeirolas-container"></div>
+    <div class="container page-header-section">
+      <h1 class="section-title">Buscar Artista</h1>
+      <p class="section-subtitle">Procure pelos seus cantores preferidos e veja onde se apresentarão</p>
+      
+      <div class="search-box-page">
+        <input type="text" id="busca-input" placeholder="Digite o nome do artista ou banda..." oninput="doSearch()" />
+        <span class="search-input-icon">🔍</span>
+      </div>
+
+      <div class="suggestions">
+        <span class="suggestion-label">Acesso rápido:</span>
+        <button onclick="setSuggestion('Flávio José')">Flávio José</button>
+        <button onclick="setSuggestion('Elba Ramalho')">Elba Ramalho</button>
+        <button onclick="setSuggestion('Dorgival Dantas')">Dorgival Dantas</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="busca-results"></div>
+    </div>
+  </div>
+
+
+  <footer class="footer">
+    <div id="bandeirolas-footer" class="bandeirolas-container"></div>
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-brand">São João CG</div>
+        <div class="footer-brand-sub">Campina Grande · PB</div>
+        <p class="footer-desc">Plataforma cultural oficial para gerenciamento da programação descentralizada do Maior São João do Mundo.</p>
+      </div>
+      <div>
+        <div class="footer-nav-title">Navegação</div>
+        <div class="footer-nav">
+          <span onclick="showPage('home')">Início</span>
+          <span onclick="showPage('prog')">Programação</span>
+          <span onclick="showPage('busca')">Buscar Artistas</span>
+        </div>
+      </div>
+      <div>
+        <div class="footer-nav-title">Locais Populares</div>
+        <div class="footer-nav">
+          <span>Parque do Povo</span>
+          <span>Vila Sítio São João</span>
+          <span>Vila do Artesão</span>
+          <span>Distrito de Galante</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 · Sistema do Maior São João do Mundo · Desenvolvido com Java + Spring Boot</div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
