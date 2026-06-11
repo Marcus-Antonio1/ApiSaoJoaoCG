@@ -49,7 +49,7 @@ Além da API REST, o projeto conta com um portal web responsivo para visualizaç
 | Java | 21 | Linguagem principal |
 | Spring Boot | 4.0.6 | Framework |
 | Spring Data JPA | — | Persistência |
-| PostgreSQL | 16 | Banco de dados |
+| PostgreSQL | 15 | Banco de dados |
 | Flyway | — | Versionamento do banco |
 | Lombok | — | Redução de boilerplate |
 | SpringDoc OpenAPI | 2.8.9 | Swagger |
