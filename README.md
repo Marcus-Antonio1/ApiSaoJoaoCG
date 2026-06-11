@@ -172,9 +172,9 @@ http://localhost:8080/api-docs
 | Polo | Tipo | Entrada |
 |--------|---------|---------|
 | Parque do Povo | Público | Gratuita |
-| Vila Sítio São João | Privado | Paga |
+| Vila Sítio São João | Público | Gratuita |
 | Vila do Artesão | Público | Gratuita |
-| Vila Forró | Público | Gratuita |
+| Carvalheira na vila | Privado | Paga |
 | Trem do Forró | Público | Paga |
 | Arraiá de Cumpade | Privado | Paga |
 | Campestre | Privado | Paga |
