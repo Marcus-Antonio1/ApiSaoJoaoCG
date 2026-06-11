@@ -10,7 +10,7 @@
 		<relativePath/>
 	</parent>
 
-	<groupId>com.campinagramde</groupId>
+	<groupId>com.campinagrande</groupId>
 	<artifactId>saojoao</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ApiSaoJoao</name>

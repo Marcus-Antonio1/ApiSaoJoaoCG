@@ -1,0 +1,145 @@
+# ==========================
+# Java / Maven
+# ==========================
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Maven
+.mvn/timing.properties
+
+# Logs
+*.log
+logs/
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# ==========================
+# IDEs
+# ==========================
+
+# IntelliJ
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Eclipse
+.project
+.classpath
+.settings/
+.springBeans
+.sts4-cache/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+
+# ==========================
+# Sistema Operacional
+# ==========================
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# Linux
+*~
+
+# ==========================
+# Spring Boot
+# ==========================
+
+application-local.properties
+application-dev.properties
+application-prod.properties
+
+src/main/resources/application.properties
+
+# Arquivos de configuração locais
+.env
+.env.*
+
+# ==========================
+# PostgreSQL / Banco
+# ==========================
+
+*.backup
+*.sql.bak
+
+# Dados locais do Docker
+postgres-data/
+pgadmin-data/
+
+# ==========================
+# Docker
+# ==========================
+
+docker-volumes/
+docker-data/
+
+# ==========================
+# Frontend
+# ==========================
+
+node_modules/
+
+# Cache
+.cache/
+.parcel-cache/
+
+# Build Frontend
+dist/
+build/
+
+# ==========================
+# Arquivos de Upload
+# ==========================
+
+uploads/
+temp/
+tmp/
+
+# ==========================
+# Relatórios
+# ==========================
+
+coverage/
+jacoco.exec
+
+# ==========================
+# Arquivos de Teste
+# ==========================
+
+surefire-reports/
+failsafe-reports/
+
+# ==========================
+# Arquivos Gerados
+# ==========================
+
+*.class
+*.jar
+*.war
+*.ear
+
+# ==========================
+# Flyway
+# ==========================
+
+flyway.conf
+
+# ==========================
+# Swagger/OpenAPI
+# ==========================
+
+openapi.json
+openapi.yaml

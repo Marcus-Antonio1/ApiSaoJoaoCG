@@ -103,6 +103,15 @@ body {
 .tag-pub { background: #d4edda; color: #155724; }
 .tag-priv { background: #f8d7da; color: #721c24; }
 .tag-free { background: var(--gold); color: #000; }
+.tag-paid{
+  background:#e67e22;
+  color:#fff;
+}
+
+.tag-unavailable{
+  background:#c0392b;
+  color:#fff;
+}
 .polo-card-body { padding: 1.25rem; display: flex; flex-direction: column; flex-grow: 1; }
 .polo-card-body h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.3rem; color: var(--wood-dark); }
 .polo-card-bairro { font-size: 0.8rem; font-weight: 700; color: var(--orange); margin-bottom: 0.6rem; }
